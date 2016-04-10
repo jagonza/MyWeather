@@ -94,17 +94,15 @@ extension ViewController: UITableViewDataSource {
         
         if let cell = dailyForecastTableView.dequeueReusableCellWithIdentifier("DailyForecastCell", forIndexPath: indexPath) as? DailyForecastTVC {
             
-//            if weather.currentWeather != nil {
+            let dailyForecast: DailyWeather = weather.dailyWeatherArray[indexPath.row]
             
-                let dailyForecast: DailyWeather = weather.dailyWeatherArray[indexPath.row]
-                
-                cell.dayOfWeekLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_WEEK).uppercaseString
-                cell.dayOfMonthLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_MONTH)
-                cell.iconImg.image = UIImage(named: dailyForecast.icon)
-                cell.minTempLbl.text = dailyForecast.minTemp
-                cell.maxTemLbl.text = dailyForecast.maxTemp
-//            }
+            cell.dayOfWeekLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_WEEK).uppercaseString
+            cell.dayOfMonthLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_MONTH)
+            cell.iconImg.image = UIImage(named: dailyForecast.icon)
+            cell.minTempLbl.text = dailyForecast.minTemp
+            cell.maxTemLbl.text = dailyForecast.maxTemp
             return cell
+            
         } else {
             return UITableViewCell()
         }
