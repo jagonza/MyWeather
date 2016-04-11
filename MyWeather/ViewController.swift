@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var minTempLbl: UILabel!
     @IBOutlet weak var precipProbLbl: UILabel!
     @IBOutlet weak var dailyForecastTableView: UITableView!
+    @IBOutlet weak var hourlyForecastCollectionView: UICollectionView!
+    
     
     //MARK: - Global variables
     
@@ -29,6 +31,8 @@ class ViewController: UIViewController {
         
         dailyForecastTableView.dataSource = self
         dailyForecastTableView.registerNib(UINib(nibName: "DailyForecastTVC", bundle: nil), forCellReuseIdentifier: "DailyForecastCell")
+        hourlyForecastCollectionView.dataSource = self
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,17 +50,17 @@ class ViewController: UIViewController {
     
     func loadWeather() {
         
-//        if let weatherUD = Utils.getWeatherFromUserDefaults(API_LAT_VALUE, longitude: API_LON_VALUE) {
-//            if Utils.downloadLastWeatherInfo(weatherUD.dateForPrediction) {
-//                downloadLastWeatherInfo()
-//            } else {
-//                weather = weatherUD
-//                updateUI()
-//            }
-//        } else {
+        if let weatherUD = Utils.getWeatherFromUserDefaults(API_LAT_VALUE, longitude: API_LON_VALUE) {
+            if Utils.downloadLastWeatherInfo(weatherUD.dateForPrediction) {
+                downloadLastWeatherInfo()
+            } else {
+                weather = weatherUD
+                updateUI()
+            }
+        } else {
             downloadLastWeatherInfo()
-//        }
-        
+        }
+    
     }
     
     
@@ -73,13 +77,14 @@ class ViewController: UIViewController {
     func updateUI() {
         let todayForecast:DailyWeather = weather.dailyWeatherArray[0]
         
-        currentWeatherImg.image = UIImage(named: weather.currentWeather.icon)
+        currentWeatherImg.image = UIImage(named: "\(weather.currentWeather.icon)-big")
         currentTempLbl.text = weather.currentWeather.currentTemp
         minTempLbl.text = todayForecast.minTemp
         maxTempLbl.text = todayForecast.maxTemp
         precipProbLbl.text = weather.currentWeather.precipProb
         
         dailyForecastTableView.reloadData()
+        hourlyForecastCollectionView.reloadData()
     }
     
 }
@@ -94,11 +99,11 @@ extension ViewController: UITableViewDataSource {
         
         if let cell = dailyForecastTableView.dequeueReusableCellWithIdentifier("DailyForecastCell", forIndexPath: indexPath) as? DailyForecastTVC {
             
-            let dailyForecast: DailyWeather = weather.dailyWeatherArray[indexPath.row]
+            let dailyForecast: DailyWeather = weather.dailyWeatherArray[indexPath.row + 1]
             
             cell.dayOfWeekLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_WEEK).uppercaseString
             cell.dayOfMonthLbl.text = Utils.getDateStringFromTimeInterval(dailyForecast.day, mask: MASK_DAY_OF_MONTH)
-            cell.iconImg.image = UIImage(named: dailyForecast.icon)
+            cell.iconImg.image = UIImage(named: "\(dailyForecast.icon)-1")
             cell.minTempLbl.text = dailyForecast.minTemp
             cell.maxTemLbl.text = dailyForecast.maxTemp
             return cell
@@ -111,7 +116,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if weather.dailyWeatherArray != nil {
-            return weather.dailyWeatherArray.count
+            return weather.dailyWeatherArray.count - 1
         } else {
             return 0
         }
@@ -120,5 +125,38 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-
-
+extension ViewController : UICollectionViewDataSource {
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if weather.hourlyWeatherArray != nil {
+            return 12
+        } else {
+            return 0
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HourlyForeCastCVC", forIndexPath: indexPath) as? HourlyForeCastCVC {
+            
+            let hourlyWeather = weather.hourlyWeatherArray[indexPath.row]
+            
+            cell.hourLbl.text = Utils.getDateStringFromTimeInterval(hourlyWeather.time, mask: "HH")
+            cell.iconImg.image = UIImage(named: "\(hourlyWeather.icon)-1")
+            cell.precipProb.text = hourlyWeather.precipProb
+            cell.tempLbl.text = hourlyWeather.temperature
+            
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        
+        return 1
+        
+    }
+    
+}
