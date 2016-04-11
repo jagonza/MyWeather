@@ -14,6 +14,7 @@ class Weather: NSObject, NSCoding {
     //MARK: - Global variables
     
     private var _currentWeather: CurrentWeather!
+    private var _horylyWeatherArray: [HourlyWeather]!
     private var _dailyWeatherArray: [DailyWeather]!
     private var _url: String!
     private var _dateForPrediction: NSTimeInterval!
@@ -27,6 +28,15 @@ class Weather: NSObject, NSCoding {
         }
         set(newValue) {
             _currentWeather = newValue
+        }
+    }
+    
+    var hourlyWeatherArray: [HourlyWeather]! {
+        get {
+            return _horylyWeatherArray
+        }
+        set(newValue) {
+            _horylyWeatherArray = newValue
         }
     }
     
@@ -71,6 +81,10 @@ class Weather: NSObject, NSCoding {
             _currentWeather = currentWeather
         }
         
+        if let hourlyWeatherArray = aDecoder.decodeObjectForKey(KEY_HOURLY_WEATHER_ARRAY) as? [HourlyWeather]{
+            _horylyWeatherArray = hourlyWeatherArray
+        }
+        
         if let dailyWeatherArray = aDecoder.decodeObjectForKey(KEY_DAILY_WEATHER_ARRAY) as? [DailyWeather] {
             _dailyWeatherArray = dailyWeatherArray
         }
@@ -90,6 +104,10 @@ class Weather: NSObject, NSCoding {
         
         if let currentWeather = _currentWeather {
             aCoder.encodeObject(currentWeather, forKey: KEY_CURRENT_WEATHER)
+        }
+        
+        if let hourlyWeatherArray = _horylyWeatherArray {
+            aCoder.encodeObject(hourlyWeatherArray, forKey: KEY_HOURLY_WEATHER_ARRAY)
         }
         
         if let dailyWeatherArray = _dailyWeatherArray {
@@ -130,6 +148,18 @@ class Weather: NSObject, NSCoding {
                         let dailyWeather = DailyWeather()
                         dailyWeather.fillDailyDataWeather(dataWeather)
                         self.dailyWeatherArray.append(dailyWeather)
+                    }
+                    
+                }
+                
+                if let hWeather = weatherJSON["hourly"] as? Dictionary<String, AnyObject>,
+                    let hDataWeather = hWeather["data"] as? [Dictionary<String, AnyObject>] where hDataWeather.count > 0 {
+                    self.hourlyWeatherArray = [HourlyWeather]()
+                    
+                    for dataWeather in hDataWeather {
+                        let hourlyWeather = HourlyWeather()
+                        hourlyWeather.fillHourlyDataWeather(dataWeather)
+                        self.hourlyWeatherArray.append(hourlyWeather)
                     }
                     
                 }
