@@ -14,8 +14,6 @@ let BASE_URL = "https://api.forecast.io/forecast/"
 
 //MARK: - API
 let API_ID_VALUE = "20460f38ff37e39f747dff1882a4d26f"
-let API_LAT_VALUE = "40.4846845"
-let API_LON_VALUE = "-3.7039588"
 
 //MARK: - KEYS
 let KEY_ICON = "icon"
@@ -30,7 +28,12 @@ let KEY_HOURLY_WEATHER_ARRAY = "hourlyWeatherArray"
 let KEY_DAILY_WEATHER_ARRAY = "dailyWeatherArray"
 let KEY_URL = "url"
 let KEY_DATE_FOR_PREDICTION = "dateForPrediction"
-
+let KEY_SUMMARY = "summary"
+let KEY_HOURLY_SUMMARY = "hourly_summary"
+let KEY_DAILY_SUMMARY = "daily_summary"
+let KEY_SUNRISE_TIME = "sunriseTime"
+let KEY_SUNSET_TIME = "sunsetTime"
+let KEY_CURRENT_SUMMARY = "current_summary"
 
 //MARK: - CONSTANTS
 let CT_SECONDS_TO_UPDATE: Double = 15 * 60

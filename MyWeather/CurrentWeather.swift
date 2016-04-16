@@ -17,9 +17,7 @@ class CurrentWeather: NSObject, NSCoding {
     private var _currentTemp: Double?
     private var _apparentTemp: Double?
     private var _precipProb: Double?
-    private var _sunriseTime: Int?
-    private var _sunsetTime: Int?
-    
+    private var _summary: String?
     
     //MARK: - Public variables
     
@@ -55,19 +53,11 @@ class CurrentWeather: NSObject, NSCoding {
         }
     }
     
-    var sunriseTime: String {
-        if _sunriseTime == nil {
+    var summary: String {
+        if _summary == nil {
             return ""
         } else {
-            return Utils.getStringHoursFromMillis(_sunriseTime!)
-        }
-    }
-    
-    var sunsetTime: String {
-        if _sunsetTime == nil {
-            return ""
-        } else {
-            return Utils.getStringHoursFromMillis(_sunsetTime!)
+            return _summary!
         }
     }
     
@@ -97,10 +87,13 @@ class CurrentWeather: NSObject, NSCoding {
             _precipProb = precipProb
         }
         
+        if let summary = aDecoder.decodeObjectForKey(KEY_CURRENT_SUMMARY) as? String{
+            _summary = summary
+        }
+        
     }
     
 
-    
     func encodeWithCoder(aCoder: NSCoder) {
         
         if let icon = _icon {
@@ -119,6 +112,10 @@ class CurrentWeather: NSObject, NSCoding {
             aCoder.encodeObject(precipProb, forKey: KEY_PRECIP_PROBABILITY)
         }
         
+        if let summary = _summary {
+            aCoder.encodeObject(summary, forKey: KEY_CURRENT_SUMMARY)
+        }
+        
     }
     
     //MARK: - Helper functions
@@ -129,6 +126,7 @@ class CurrentWeather: NSObject, NSCoding {
         _currentTemp = Utils.getOptionalDoubleFromDictionary(KEY_TEMPERATURE, dict: currentWeather)
         _apparentTemp = Utils.getOptionalDoubleFromDictionary(KEY_APPARENT_TEMPERATURE, dict: currentWeather)
         _precipProb = Utils.getOptionalDoubleFromDictionary(KEY_PRECIP_PROBABILITY, dict: currentWeather)
+        _summary = Utils.getOptionalStringFromDictionary(KEY_SUMMARY, dict: currentWeather)
         
     }
     

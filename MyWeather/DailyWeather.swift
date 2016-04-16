@@ -16,6 +16,8 @@ class DailyWeather: NSObject, NSCoding {
     private var _maxTemp: Double?
     private var _minTemp: Double?
     private var _icon: String?
+    private var _sunriseTime: Int?
+    private var _sunsetTime: Int?
     
     //MARK: Public variables
     
@@ -51,7 +53,21 @@ class DailyWeather: NSObject, NSCoding {
         }
     }
     
-
+    var sunriseTime: String {
+        if _sunriseTime == nil {
+            return ""
+        } else {
+            return Utils.getStringHoursFromSeconds(_sunriseTime!)
+        }
+    }
+    
+    var sunsetTime: String {
+        if _sunsetTime == nil {
+            return ""
+        } else {
+            return Utils.getStringHoursFromSeconds(_sunsetTime!)
+        }
+    }
     
     //MARK: - Initializers
     
@@ -79,6 +95,14 @@ class DailyWeather: NSObject, NSCoding {
             _icon = icon
         }
         
+        if let sunrise = aDecoder.decodeObjectForKey(KEY_SUNRISE_TIME) as? Int {
+            _sunriseTime = sunrise
+        }
+        
+        if let sunset = aDecoder.decodeObjectForKey(KEY_SUNSET_TIME) as? Int {
+            _sunsetTime = sunset
+        }
+        
         
     }
     
@@ -100,6 +124,13 @@ class DailyWeather: NSObject, NSCoding {
             aCoder.encodeObject(icon, forKey: KEY_ICON)
         }
         
+        if let sunrise = _sunriseTime {
+            aCoder.encodeObject(sunrise, forKey: KEY_SUNRISE_TIME)
+        }
+        
+        if let sunset = _sunsetTime {
+            aCoder.encodeObject(sunset, forKey: KEY_SUNSET_TIME)
+        }
         
     }
     
@@ -111,6 +142,8 @@ class DailyWeather: NSObject, NSCoding {
         _minTemp = Utils.getOptionalDoubleFromDictionary(KEY_TEMPERATURE_MIN, dict: dailyDataWeather)
         _maxTemp = Utils.getOptionalDoubleFromDictionary(KEY_TEMPERATURE_MAX, dict: dailyDataWeather)
         _icon = Utils.getOptionalStringFromDictionary(KEY_ICON, dict: dailyDataWeather)
+        _sunriseTime = Utils.getOptionalIntFromDictionary(KEY_SUNRISE_TIME, dict: dailyDataWeather)
+        _sunsetTime = Utils.getOptionalIntFromDictionary(KEY_SUNSET_TIME, dict: dailyDataWeather)
         
     }
     

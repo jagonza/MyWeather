@@ -11,12 +11,12 @@ import Foundation
 
 class Utils {
 
-    static func getStringHoursFromMillis(timeInMillis: Int) -> String {
+    static func getStringHoursFromSeconds(timeInSeconds: Int) -> String {
         
-        let timeInterval = NSTimeInterval(integerLiteral: Int64(timeInMillis))
+        let timeInterval = NSTimeInterval(integerLiteral: Int64(timeInSeconds))
         let date = NSDate(timeIntervalSince1970: timeInterval)
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.dateFormat = "HH:mm"
         
         return dateFormatter.stringFromDate(date)
     }
@@ -31,17 +31,23 @@ class Utils {
     }
     
     
-    static func storeWeatherIntoUserDefaults(latitude: String, longitude: String, weather: Weather) {
+    static func storeWeatherIntoUserDefaults(latitude latitude: Double, longitude: Double, weather: Weather) {
+        
+        let strLat = Utils.doubleToString(latitude, decimals: 3)
+        let strLong = Utils.doubleToString(longitude, decimals: 3)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(weather), forKey: "\(latitude)#\(longitude)")
+        userDefaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(weather), forKey: "\(strLat)#\(strLong)")
         
     }
     
-    static func getWeatherFromUserDefaults(latitude: String, longitude: String) -> Weather? {
+    static func getWeatherFromUserDefaults(latitude latitude: Double, longitude: Double) -> Weather? {
+        
+        let strLat = Utils.doubleToString(latitude, decimals: 3)
+        let strLong = Utils.doubleToString(longitude, decimals: 3)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if let data = userDefaults.objectForKey("\(latitude)#\(longitude)") as? NSData {
+        if let data = userDefaults.objectForKey("\(strLat)#\(strLong)") as? NSData {
             return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Weather
         } else {
             return nil
@@ -71,13 +77,26 @@ class Utils {
     }
     
     static func getOptionalDoubleFromDictionary(key: String, dict: Dictionary<String, AnyObject>) -> Double? {
-        
         if let value = dict[key] as? Double {
             return value
         } else {
             return nil
         }
-        
+    }
+    
+    static func getOptionalIntFromDictionary(key: String, dict: Dictionary<String, AnyObject>) -> Int? {
+        if let value = dict[key] as? Int {
+            return value
+        } else {
+            return nil
+        }
+    }
+    
+    
+    static func doubleToString(double: Double, decimals: Int) -> String {
+        let fmt = NSNumberFormatter()
+        fmt.minimumFractionDigits = decimals
+        return fmt.stringFromNumber(double)!
     }
     
 }

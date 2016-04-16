@@ -18,6 +18,8 @@ class Weather: NSObject, NSCoding {
     private var _dailyWeatherArray: [DailyWeather]!
     private var _url: String!
     private var _dateForPrediction: NSTimeInterval!
+    private var _hourlySummary: String?
+    private var _dailySummary: String?
     
     
     //MARK: - Public variables
@@ -49,7 +51,7 @@ class Weather: NSObject, NSCoding {
         }
     }
     
-    var url: String! {
+    var url: String {
         return _url
     }
     
@@ -57,19 +59,45 @@ class Weather: NSObject, NSCoding {
         return _dateForPrediction
     }
     
+    var hourlySummary: String {
+        if _hourlySummary == nil {
+            return ""
+        } else {
+            return _hourlySummary!
+        }
+    }
+    
+    var dailySummary: String {
+        if _dailySummary == nil {
+            return ""
+        } else {
+            return _dailySummary!
+        }
+    }
+    
     //MARK: - Initializers
     
-    init(latitud: String, longitud: String) {
+    convenience init(latitude: String, longitude: String) {
+        self.init(latitude: latitude, longitude: longitude, time: nil)
+    }
+    
+    init(latitude: String, longitude: String, time: Int?) {
         var urlStr = BASE_URL
         urlStr.appendContentsOf(API_ID_VALUE)
         urlStr.appendContentsOf("/")
-        urlStr.appendContentsOf(latitud)
+        urlStr.appendContentsOf(latitude)
         urlStr.appendContentsOf(",")
-        urlStr.appendContentsOf(longitud)
+        urlStr.appendContentsOf(longitude)
+        
+        if let time = time {
+            urlStr.appendContentsOf(",")
+            urlStr.appendContentsOf("\(time)")
+        }
         
         let unitsParam = NSURLQueryItem(name: "units", value: "si")
+        let langParam = NSURLQueryItem(name: "lang", value: "es")
         let urlComponents = NSURLComponents(string: urlStr)!
-        urlComponents.queryItems = [unitsParam]
+        urlComponents.queryItems = [unitsParam, langParam]
         _url = urlComponents.string
         
         _dateForPrediction = NSDate().timeIntervalSince1970
@@ -97,6 +125,14 @@ class Weather: NSObject, NSCoding {
             _dateForPrediction = dateForPrediction
         }
         
+        if let hourlySummary = aDecoder.decodeObjectForKey(KEY_HOURLY_SUMMARY) as? String {
+            _hourlySummary = hourlySummary
+        }
+        
+        if let dailySummary = aDecoder.decodeObjectForKey(KEY_DAILY_SUMMARY) as? String {
+            _dailySummary = dailySummary
+        }
+        
     }
     
     
@@ -122,6 +158,14 @@ class Weather: NSObject, NSCoding {
             aCoder.encodeObject(dateForPrediction, forKey: KEY_DATE_FOR_PREDICTION)
         }
         
+        if let hourlySummary = _hourlySummary {
+            aCoder.encodeObject(hourlySummary, forKey: KEY_HOURLY_SUMMARY)
+        }
+        
+        if let dailySummary = _dailySummary {
+            aCoder.encodeObject(dailySummary, forKey: KEY_DAILY_SUMMARY)
+        }
+        
     }
     
     //MARK: - Helper functions
@@ -142,6 +186,8 @@ class Weather: NSObject, NSCoding {
                 if let dWeather = weatherJSON["daily"] as? Dictionary<String, AnyObject>,
                     let dDataWeather = dWeather["data"] as? [Dictionary<String, AnyObject>] where dDataWeather.count > 0 {
                     
+                    self._dailySummary = Utils.getOptionalStringFromDictionary(KEY_SUMMARY, dict: dWeather)
+                    
                     self.dailyWeatherArray = [DailyWeather]()
                     
                     for dataWeather in dDataWeather {
@@ -154,12 +200,18 @@ class Weather: NSObject, NSCoding {
                 
                 if let hWeather = weatherJSON["hourly"] as? Dictionary<String, AnyObject>,
                     let hDataWeather = hWeather["data"] as? [Dictionary<String, AnyObject>] where hDataWeather.count > 0 {
+                    
+                    self._hourlySummary = Utils.getOptionalStringFromDictionary(KEY_SUMMARY, dict: hWeather)
+                    
                     self.hourlyWeatherArray = [HourlyWeather]()
                     
                     for dataWeather in hDataWeather {
-                        let hourlyWeather = HourlyWeather()
-                        hourlyWeather.fillHourlyDataWeather(dataWeather)
-                        self.hourlyWeatherArray.append(hourlyWeather)
+                        if let dataWeatherTime = Utils.getOptionalDoubleFromDictionary(KEY_TIME, dict: dataWeather)
+                         where dataWeatherTime > NSDate().timeIntervalSince1970 {
+                            let hourlyWeather = HourlyWeather()
+                            hourlyWeather.fillHourlyDataWeather(dataWeather)
+                            self.hourlyWeatherArray.append(hourlyWeather)
+                        }
                     }
                     
                 }
