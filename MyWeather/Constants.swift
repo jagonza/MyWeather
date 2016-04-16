@@ -10,6 +10,7 @@ import UIKit
 typealias DownloadCompleted = () -> ()
 
 //TEST
+let TEST = "test"
 
 //MARK: - URL
 let BASE_URL = "https://api.forecast.io/forecast/"
