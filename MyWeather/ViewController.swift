@@ -99,16 +99,16 @@ class ViewController: UIViewController {
     }
     
     func loadWeather() {
-//        if let weatherUD = Utils.getWeatherFromUserDefaults(latitude: latitude, longitude: longitude) {
-//            if Utils.downloadLastWeatherInfo(weatherUD.dateForPrediction) {
-//                downloadLastWeatherInfo()
-//            } else {
-//                weather = weatherUD
-//                updateUI()
-//            }
-//        } else {
+        if let weatherUD = Utils.getWeatherFromUserDefaults(latitude: latitude, longitude: longitude) {
+            if Utils.downloadLastWeatherInfo(weatherUD.dateForPrediction) {
+                downloadLastWeatherInfo()
+            } else {
+                weather = weatherUD
+                updateUI()
+            }
+        } else {
             downloadLastWeatherInfo()
-//        }
+        }
     
     }
     

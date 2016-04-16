@@ -15,6 +15,7 @@
 		3B09D16C1CB156A800217887 /* MyWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B09D16A1CB156A800217887 /* MyWeather.xcdatamodeld */; };
 		3B09D16E1CB156A800217887 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B09D16D1CB156A800217887 /* Assets.xcassets */; };
 		3B09D1711CB156A800217887 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B09D16F1CB156A800217887 /* LaunchScreen.storyboard */; };
+		3B0F51E21CC262480039D0B8 /* TimeMachineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F51E11CC262480039D0B8 /* TimeMachineVC.swift */; };
 		3B2F52761CBFFF8400F1FD54 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F52751CBFFF8400F1FD54 /* LocationHelper.swift */; };
 		3B829EC31CB863D900866AFA /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B829EC21CB863D900866AFA /* Weather.swift */; };
 		3B8A72C31CBACAB6006931C0 /* HourlyForeCastCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8A72C21CBACAB6006931C0 /* HourlyForeCastCVC.swift */; };
@@ -37,6 +38,7 @@
 		3B09D16D1CB156A800217887 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B09D1701CB156A800217887 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B09D1721CB156A800217887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0F51E11CC262480039D0B8 /* TimeMachineVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeMachineVC.swift; sourceTree = "<group>"; };
 		3B2F52751CBFFF8400F1FD54 /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		3B829EC21CB863D900866AFA /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		3B8A72C21CBACAB6006931C0 /* HourlyForeCastCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyForeCastCVC.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				3B09D1651CB156A800217887 /* ViewController.swift */,
 				3B8A72C21CBACAB6006931C0 /* HourlyForeCastCVC.swift */,
 				3B093EA21CBC2167002F7452 /* DailyForecastCVC.swift */,
+				3B0F51E11CC262480039D0B8 /* TimeMachineVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			files = (
 				3B2F52761CBFFF8400F1FD54 /* LocationHelper.swift in Sources */,
 				3BC6E1291CB589B4000E2A01 /* DailyWeather.swift in Sources */,
+				3B0F51E21CC262480039D0B8 /* TimeMachineVC.swift in Sources */,
 				3B093EA11CBAFFCC002F7452 /* HourlyWeather.swift in Sources */,
 				3B996C441CB1859600EEC082 /* Constants.swift in Sources */,
 				3B09D1661CB156A800217887 /* ViewController.swift in Sources */,
