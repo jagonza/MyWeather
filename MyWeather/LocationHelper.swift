@@ -22,9 +22,7 @@ class LocationHelper {
             var placeMark: CLPlacemark!
             placeMark = placemarks?[0]
             
-            print(placeMark.addressDictionary)
-            
-            if let sublocality = placeMark.addressDictionary!["SubLocality"] as? String {
+            if let sublocality = placeMark.addressDictionary!["City"] as? String {
                 completion(name: sublocality)
             } else {
                 completion(name: "")

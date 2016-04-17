@@ -1,5 +1,5 @@
 //
-//  DailyForecastCVC.swift
+//  DailyForecastTVC
 //  MyWeather
 //
 //  Created by Javier González Rojo on 11/4/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DailyForecastCVC: UICollectionViewCell {
+class DailyForecastTVC: UITableViewCell {
     
     @IBOutlet weak var dayOfWeekLbl: UILabel!
     @IBOutlet weak var dayOfMonthLbl: UILabel!

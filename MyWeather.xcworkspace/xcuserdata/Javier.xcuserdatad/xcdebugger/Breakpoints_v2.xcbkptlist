@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyWeather/TimeMachineVC.swift"
-            timestampString = "482524783.360842"
+            timestampString = "482609229.9353"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "updateUI()"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,46 +25,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyWeather/Weather.swift"
-            timestampString = "482524444.881976"
+            filePath = "MyWeather/ViewController.swift"
+            timestampString = "482609229.9353"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "downloadWeaher(_:)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "hoursToDisplay()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyWeather.Weather.(downloadWeaher (() -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "MyWeather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Javier/Desarrollo/Xcode/Mi%CC%81os/MyWeather/MyWeather/Weather.swift"
-                  timestampString = "482524445.649512"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "201"
-                  endingLineNumber = "201"
-                  offsetFromSymbolStart = "4050">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyWeather.Weather.(downloadWeaher (() -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "MyWeather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Javier/Desarrollo/Xcode/Mi%CC%81os/MyWeather/MyWeather/Weather.swift"
-                  timestampString = "482524445.649736"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "201"
-                  endingLineNumber = "201"
-                  offsetFromSymbolStart = "4378">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

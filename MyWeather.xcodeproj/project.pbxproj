@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B093EA11CBAFFCC002F7452 /* HourlyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B093EA01CBAFFCC002F7452 /* HourlyWeather.swift */; };
-		3B093EA31CBC2167002F7452 /* DailyForecastCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B093EA21CBC2167002F7452 /* DailyForecastCVC.swift */; };
+		3B093EA31CBC2167002F7452 /* DailyForecastTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B093EA21CBC2167002F7452 /* DailyForecastTVC.swift */; };
 		3B09D1641CB156A800217887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B09D1631CB156A800217887 /* AppDelegate.swift */; };
 		3B09D1661CB156A800217887 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B09D1651CB156A800217887 /* ViewController.swift */; };
 		3B09D1691CB156A800217887 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B09D1671CB156A800217887 /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		3B093EA01CBAFFCC002F7452 /* HourlyWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyWeather.swift; sourceTree = "<group>"; };
-		3B093EA21CBC2167002F7452 /* DailyForecastCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecastCVC.swift; sourceTree = "<group>"; };
+		3B093EA21CBC2167002F7452 /* DailyForecastTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecastTVC.swift; sourceTree = "<group>"; };
 		3B09D1601CB156A800217887 /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B09D1631CB156A800217887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B09D1651CB156A800217887 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 			children = (
 				3B09D1651CB156A800217887 /* ViewController.swift */,
 				3B8A72C21CBACAB6006931C0 /* HourlyForeCastCVC.swift */,
-				3B093EA21CBC2167002F7452 /* DailyForecastCVC.swift */,
+				3B093EA21CBC2167002F7452 /* DailyForecastTVC.swift */,
 				3B0F51E11CC262480039D0B8 /* TimeMachineVC.swift */,
 			);
 			name = Controller;
@@ -296,7 +296,7 @@
 				3B09D1661CB156A800217887 /* ViewController.swift in Sources */,
 				3B8A72C31CBACAB6006931C0 /* HourlyForeCastCVC.swift in Sources */,
 				3B09D1641CB156A800217887 /* AppDelegate.swift in Sources */,
-				3B093EA31CBC2167002F7452 /* DailyForecastCVC.swift in Sources */,
+				3B093EA31CBC2167002F7452 /* DailyForecastTVC.swift in Sources */,
 				3B996C411CB1846C00EEC082 /* CurrentWeather.swift in Sources */,
 				3B09D16C1CB156A800217887 /* MyWeather.xcdatamodeld in Sources */,
 				3BC6E1251CB2EA8B000E2A01 /* Utils.swift in Sources */,

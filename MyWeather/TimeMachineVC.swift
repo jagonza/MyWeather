@@ -77,7 +77,6 @@ class TimeMachineVC: UIViewController {
         
         currentWeatherImg.image = UIImage(named: weather.currentWeather.icon)
         currentTempLbl.text = weather.currentWeather.currentTemp
-        
         currentDayLbl.text = Utils.getDateStringFromTimeInterval(weather.dailyWeatherArray[0].day , mask: "EEEE, dd 'de' MMMM 'de' yyyy")
         let dailyWeather = weather.dailyWeatherArray[0]
         minTempLbl.text = dailyWeather.minTemp
@@ -178,7 +177,7 @@ extension TimeMachineVC : UICollectionViewDataSource {
                 
                 cell.dayLbl.hidden = true
                 cell.hourLbl.text = hour + "h"
-                cell.iconImg.image = UIImage(named: "\(hourlyWeather.icon)-1")
+                cell.iconImg.image = UIImage(named: "\(hourlyWeather.icon)")
                 cell.precipProb.text = hourlyWeather.precipProb
                 cell.tempLbl.text = hourlyWeather.temperature
                 

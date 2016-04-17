@@ -206,12 +206,9 @@ class Weather: NSObject, NSCoding {
                     self.hourlyWeatherArray = [HourlyWeather]()
                     
                     for dataWeather in hDataWeather {
-//                        if let dataWeatherTime = Utils.getOptionalDoubleFromDictionary(KEY_TIME, dict: dataWeather)
-//                         where dataWeatherTime > NSDate().timeIntervalSince1970 {
-                            let hourlyWeather = HourlyWeather()
-                            hourlyWeather.fillHourlyDataWeather(dataWeather)
-                            self.hourlyWeatherArray.append(hourlyWeather)
-//                        }
+                        let hourlyWeather = HourlyWeather()
+                        hourlyWeather.fillHourlyDataWeather(dataWeather)
+                        self.hourlyWeatherArray.append(hourlyWeather)
                     }
                     
                 }
